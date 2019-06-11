@@ -16,7 +16,7 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
                methodChannelWithName:CHANNEL_NAME
                binaryMessenger:[registrar messenger]];
 
-    UIViewController *viewController = [UIApplication sharedApplication].delegate.window.rootViewController;
+    UIViewController* viewController = [UIApplication sharedApplication].delegate.window.rootViewController;
     FlutterWebviewPlugin* instance = [[FlutterWebviewPlugin alloc] initWithViewController:viewController];
 
     [registrar addMethodCallDelegate:instance channel:channel];
@@ -347,9 +347,11 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
                                                       handler:^(UIAlertAction *action) {
                                                           completionHandler();
                                                       }]];
-    [self presentViewController:alertController animated:YES completion:^{}];
+    [self.viewController presentViewController:alertController animated:YES completion:^{}];
 }
 
+- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (Bool)(void))completionHandler {
+}
 
 
 #pragma mark -- UIScrollViewDelegate
