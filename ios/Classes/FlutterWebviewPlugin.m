@@ -338,6 +338,20 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
     decisionHandler(WKNavigationResponsePolicyAllow);
 }
 
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message
+                                                                             message:nil
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction *action) {
+                                                          completionHandler();
+                                                      }]];
+    [self presentViewController:alertController animated:YES completion:^{}];
+}
+
+
+
 #pragma mark -- UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     if (scrollView.pinchGestureRecognizer.isEnabled != _enableZoom) {
