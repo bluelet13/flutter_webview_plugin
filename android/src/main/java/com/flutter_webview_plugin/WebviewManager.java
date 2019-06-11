@@ -349,8 +349,9 @@ class WebviewManager {
             boolean geolocationEnabled
     ) {
         webView.getSettings().setJavaScriptEnabled(withJavascript);
-        webView.getSettings().setBuiltInZoomControls(withZoom);
-        webView.getSettings().setSupportZoom(withZoom);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setSupportZoom(true);
+        webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setDomStorageEnabled(withLocalStorage);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(supportMultipleWindows);
 
